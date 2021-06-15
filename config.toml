@@ -1,5 +1,6 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
+baseURL = "https://ishikr.github.io/blog.github.io/"
+languageCode = "ja-jp"
 title = "My New Hugo Site"
 theme = "ananke"
 publishDir = "docs"
+hasCJKLanguage = true
