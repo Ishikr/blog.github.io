@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>個人的雑感ブログ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Hugoの基本設定" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ishikr.github.io/blog.github.io/posts/2021-06-30/" />
+    <meta itemprop="name" content="Hugoの基本設定">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Hugoの基本設定"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://ishikr.github.io/blog.github.io/scss/style.min.9426e775ac75d5733d6ddbef797cca06f7d7145fa059b770cc23b0bb028db22e.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Hugoの基本設定</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/blog.github.io/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://ishikr.github.io/blog.github.io/tags/hugo/"
+                                                            >Hugo</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/blog.github.io/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><p>一からHugoでサイトを作る段階で色々触ったりした部分を備忘録としてまとめてみました</p>
+<h1 id="hugoのインストール">Hugoのインストール</h1>
+<p><a href="https://github.com/gohugoio/hugo/releases">公式Github</a>から最新版を取得する<br>
+下にある<code>hugo_extended</code>と書かれているものはSCSS/SASSサポートがされている<br>
+debなりtarなりzipなりを取ってきて解凍する手法やパッケージでインストールする手法が一般的<br>
+Windowsの場合はzipファイルを解凍して中にあるファイル群を丸ごと<code>Hugo/bin/</code>配下に置いて環境変数の設定を行うだけで良し</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">|-- Hugo
+  |-- bin
+    |-- hugo.exe
+    |-- LICENSE
+    |-- README.md
+  |-- Sites
+    |-- Hugoプロジェクトフォルダ
+</code></pre></div><h2 id="プロジェクトの作成">プロジェクトの作成</h2>
+<p>実行パスが通されていたらterminal上で<code>hugo -h</code>と打つことでヘルプを確認できる</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#586e75"># 同階層にHugoフォルダがあることを想定</span>
+$ ls -al
+$ <span style="color:#b58900">cd</span> Hugo/Sites
+$ hugo new sites <span style="color:#719e07">{</span>プロジェクト名<span style="color:#719e07">}</span>
+
+<span style="color:#586e75"># Sites配下に新しくフォルダが作られていることを確認</span>
+</code></pre></div><h2 id="ディレクトリ構成">ディレクトリ構成</h2>
+<p>Hugoのディレクトリ構成は以下のようになっている</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">archetypes         <span style="color:#586e75"># 基本テンプレートファイル</span>
+
+content              <span style="color:#586e75"># 作成した記事はここに格納される</span>
+
+data                  <span style="color:#586e75"># </span>
+
+public<span style="color:#719e07">(</span>docs<span style="color:#719e07">)</span>       <span style="color:#586e75"># Hugoでビルドしたらここに記事が格納される、目に見える部分</span>
+
+layouts              <span style="color:#586e75"># 基本/部分テンプレートファイルはここに格納される</span>
+
+resources          <span style="color:#586e75">#</span>
+
+static                <span style="color:#586e75"># 画像などはここに格納する</span>
+
+themes             <span style="color:#586e75"># 外部リポジトリとして持ってきたテーマはここに格納する</span>
+
+exampleSites     <span style="color:#586e75"># themesの中にしかないディレクトリ</span>
+</code></pre></div><h1 id="hugo-コマンド一覧">Hugo コマンド一覧</h1>
+<p><code>hugo</code>&hellip;プロジェクトのビルドを行う．<code>-t</code>オプションを付与することで任意のテーマでのビルドが行える
+<code>hugo server</code>&hellip;Hugoサーバを起動させて実際にどのように見えるか確認する．変更内容は自動反映される．<code>-t</code>オプションを付与することで任意のテーマで確認が可能で，<code>-D</code>オプションを付与することでdriftファイルの表示も可能となる
+<code>hugo new {ディレクトリ}/{ファイル名}}.md</code>&hellip;新規記事の作成を行う．作成時のテンプレートは<code>archetypes/default.md</code>が対象．
+<code>hugo new sites {プロジェクト名}</code>&hellip;hugoの新規プロジェクトを作成する</p>
+<h1 id="hugoのシンタックスハイライト">Hugoのシンタックスハイライト</h1>
+<p>0.62以降はChromaを使用しており，Githubで使えるプログラミング構文は全部ハイライトできると思ってよい</p>
+<h1 id="ちょっとしたエラー">ちょっとしたエラー</h1>
+<h2 id="発生症状">発生症状</h2>
+<p>現在使用しているカスタムテーマ「origin」にて，記事の作成日時表記がUS方式になっている<br>
+(2021年6月30日 =&gt; 2021/30/06)<br>
+featuredの記事のみに発生</p>
+<h2 id="解消方法">解消方法</h2>
+<p><code>themes/origin/layouts/partials/featured.html</code>の設定がUS基準になっていたことによるもの<br>
+該当部分を直せば正しく動作するようになる</p>
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">17
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">&lt;div class=&#34;featured-post&#34;&gt;
+    {{if (or (isset .Params &#34;image&#34;) (isset .Params &#34;imagelink&#34;))}}
+    &lt;img class=&#34;featured-post__image&#34; src=&#34;{{ if isset .Params &#34;image&#34;}}{{printf &#34;%s%s&#34; .File.Dir .Params.image | absURL }}{{else if (isset .Params &#34;imagelink&#34;)}}{{.Params.imagelink}}{{end}}&#34; alt=&#34;{{.Params.imageTitle}}&#34; /&gt;
+        &lt;div class=&#34;featured-post__image-filter&#34;&gt;&lt;/div&gt;
+    {{end}}
+    &lt;a href=&#34;{{.Permalink}}&#34; class=&#34;featured-post__wrapper&#34;&gt;
+        &lt;h2 class=&#34;featured-post__title&#34;&gt;{{.Title}}&lt;/h2&gt;
+        &lt;div class=&#34;featured-post__description&#34;&gt;{{.Description}}&lt;/div&gt;
+<span style="color:#dc322f">-         &lt;time datetime=&#34;{{.Date}}&#34;&gt;{{.Date.Format &#34;2006/02/01&#34;}}&lt;/time&gt;
+</span><span style="color:#dc322f"></span><span style="color:#719e07">+        &lt;time datetime=&#34;{{.Date}}&#34;&gt;{{.Date.Format &#34;2006/01/02&#34;}}&lt;/time&gt;
+</span><span style="color:#719e07"></span>    &lt;/a&gt;
+    &lt;ul class=&#34;featured-post__tags&#34;&gt;
+        {{ range .Params.tags }}
+            &lt;li&gt;&lt;a href=&#34;{{ $.Site.BaseURL }}/tags/{{. | urlize}}&#34;&gt;{{.}}&lt;/a&gt;&lt;/li&gt;
+        {{end}}
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="ちなみに">ちなみに</h1>
+<p>記事作成時のフォーマットである<code>archetypes/defautl.md</code>に任意の日時フォーマットを適用させたい場合，
+<code>{{ now.Format &quot;2021-01-02&quot;}}</code>とすれば良い</p>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://ishikr.github.io/blog.github.io/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+    
+    
+      
+<script src="https://ishikr.github.io/blog.github.io/js/script.js"></script>
+
+    
+  </body>
+</html>

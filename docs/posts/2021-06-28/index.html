@@ -374,14 +374,14 @@ $ mysql -u root -p ○○_development &lt; dump.sql
 <p>基本的には上述の <code>bundle install</code> での実行手順と同じ</p>
 <h2 id="dbのデータ取り込みdumpファイルの取り込み">DBのデータ取り込み(dumpファイルの取り込み)</h2>
 <p><code>bundle exec rake db:create</code>，<code>bundle exec rake db:migrate</code>を実行後に行う操作</p>
-<pre><code># MySQLの場合
-$ mysqldump -u root -p {DB名} &gt; dump.sql
-$ mysql -u root -p {DB名} &lt; dump.sql
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#586e75"># MySQLの場合</span>
+$ mysqldump -u root -p <span style="color:#719e07">{</span>DB名<span style="color:#719e07">}</span> &gt; dump.sql
+$ mysql -u root -p <span style="color:#719e07">{</span>DB名<span style="color:#719e07">}</span> &lt; dump.sql
 
-# PostgreSQLの場合
-$ psql {DB名} &gt; dump.sql
-$ psql {DB名} &lt; dump.sql
-</code></pre><h1 id="発生したエラーについて">発生したエラーについて</h1>
+<span style="color:#586e75"># PostgreSQLの場合</span>
+$ psql <span style="color:#719e07">{</span>DB名<span style="color:#719e07">}</span> &gt; dump.sql
+$ psql <span style="color:#719e07">{</span>DB名<span style="color:#719e07">}</span> &lt; dump.sql
+</code></pre></div><h1 id="発生したエラーについて">発生したエラーについて</h1>
 <h2 id="gem-sassによるtext-file-busy問題">gem &lsquo;sass&rsquo;による<code>text file busy</code>問題</h2>
 <p><em><code>sass 3.2.11 / 3.2.13</code> 等で発生</em><br>
 <code>rails server</code>の起動や<code>bundle exec rake assets:precompile</code>の実行時に<code>text file busy</code>と表示されて実行されない<br>

@@ -6,7 +6,16 @@
     <description>Recent content on 個人的雑感ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ishikr.github.io/blog.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ishikr.github.io/blog.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugoの基本設定</title>
+      <link>https://ishikr.github.io/blog.github.io/posts/2021-06-30/</link>
+      <pubDate>Wed, 30 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ishikr.github.io/blog.github.io/posts/2021-06-30/</guid>
+      <description>一からHugoでサイトを作る段階で色々触ったりした部分を備忘録としてまとめてみました Hugoのインストール 公式Githubから最新版を取得す</description>
+    </item>
+    
     <item>
       <title>Vagrant&#43;CentOS7&#43;Rails&#43;MySQLの環境構築を行う</title>
       <link>https://ishikr.github.io/blog.github.io/posts/2021-06-28/</link>

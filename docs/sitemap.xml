@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ishikr.github.io/blog.github.io/posts/</loc>
-    <lastmod>2021-06-28T00:00:00+00:00</lastmod>
+    <loc>https://ishikr.github.io/blog.github.io/tags/hugo/</loc>
+    <lastmod>2021-06-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ishikr.github.io/blog.github.io/tags/rails/</loc>
-    <lastmod>2021-06-28T00:00:00+00:00</lastmod>
+    <loc>https://ishikr.github.io/blog.github.io/posts/2021-06-30/</loc>
+    <lastmod>2021-06-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ishikr.github.io/blog.github.io/posts/</loc>
+    <lastmod>2021-06-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ishikr.github.io/blog.github.io/tags/</loc>
+    <lastmod>2021-06-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ishikr.github.io/blog.github.io/</loc>
+    <lastmod>2021-06-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ishikr.github.io/blog.github.io/tags/rails/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ishikr.github.io/blog.github.io/tags/vagrant/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ishikr.github.io/blog.github.io/posts/2021-06-28/</loc>
-    <lastmod>2021-06-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://ishikr.github.io/blog.github.io/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ishikr.github.io/blog.github.io/tags/%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/</loc>
