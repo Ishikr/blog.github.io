@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 個人的雑感ブログ</title>
-    <link>https://ishikr.github.io/blog.github.io/posts/</link>
-    <description>Recent content in Posts on 個人的雑感ブログ</description>
+    <title>環境構築 Rails Vagrant on 個人的雑感ブログ</title>
+    <link>https://ishikr.github.io/blog.github.io/tags/%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89-rails-vagrant/</link>
+    <description>Recent content in 環境構築 Rails Vagrant on 個人的雑感ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ishikr.github.io/blog.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Jun 2021 18:06:18 +0900</lastBuildDate><atom:link href="https://ishikr.github.io/blog.github.io/tags/%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89-rails-vagrant/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vagrant&#43;CentOS7&#43;Rails&#43;MySQLの環境構築を行う</title>
       <link>https://ishikr.github.io/blog.github.io/posts/2021-06-28/</link>
-      <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 15 Jun 2021 18:06:18 +0900</pubDate>
       
       <guid>https://ishikr.github.io/blog.github.io/posts/2021-06-28/</guid>
       <description>前提 Vagrant: 2.2.14 VirtualBox: 6.1.22 ruby: 2.7.1 Rails: 6.0.3 MySQL: 5.6 上記環境での動作を想定 一応rails3系、ruby1系での環境構築方法も紹介 目次 前提 目次 Vagrantの環境を作成 1.</description>

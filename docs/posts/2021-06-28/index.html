@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>個人的雑感ブログ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Vagrant&#43;CentOS7&#43;Rails&#43;MySQLの環境構築を行う" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ishikr.github.io/blog.github.io/posts/2021-06-28/" />
+    <meta itemprop="name" content="Vagrant&#43;CentOS7&#43;Rails&#43;MySQLの環境構築を行う">
+    <meta itemprop="description" content="">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Vagrant&#43;CentOS7&#43;Rails&#43;MySQLの環境構築を行う"/>
+    <meta name="twitter:description" content=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+    
+    <link rel="stylesheet" href="https://ishikr.github.io/blog.github.io/scss/style.min.9426e775ac75d5733d6ddbef797cca06f7d7145fa059b770cc23b0bb028db22e.css" >
+</head>
+<body>
+    <header>
+    <div class="header header-frame">
+        <div>
+          
+            <h1 class="header__title">Vagrant&#43;CentOS7&#43;Rails&#43;MySQLの環境構築を行う</h1>
+          
+            
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list header-nav-list--menu">
+                
+                
+                    
+                        <li class="header-nav-list__item">
+                            <a class="header-nav-list__link" href="/blog.github.io/about/">
+                                
+                                <span>About</span>
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+            <button class="header-nav-list__nav-btn">navigation</button>
+        </nav>
+        <button class="mb-header__menu-btn">
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+            <span class="mb-header__menu-btn-line"></span>
+        </button>
+    </div>
+    <nav id="mobile-header-nav" class="mb-header-nav">
+  
+  
+  <button class="mb-header-nav__close-btn flex-center">
+    <svg
+            class="mb-header-nav__svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            >
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+    </button>
+    
+    <div class="mb-header-nav__wrapper">
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Tags
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                    
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://ishikr.github.io/blog.github.io/tags/rails/"
+                                                            >Rails</a
+                                                        >
+                    </li>
+                        
+                    
+                        
+                          <li class="mb-header-nav-list__item ">
+                        <a class="mb-header-nav-list__link" href="https://ishikr.github.io/blog.github.io/tags/vagrant/"
+                                                            >Vagrant</a
+                                                        >
+                    </li>
+                        
+                    
+                
+            </ul>
+        </div>
+        <div class="mb-header-nav__container">
+            <svg
+                width="240"
+                height="72"
+                viewBox="0 0 240 72"
+                class="mb-header-nav__title"
+                >
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                Menu
+                </text>
+            </svg>
+            <ul class="mb-header-nav-list">
+                
+                
+                    
+                      <li class="mb-header-nav-list__item ">
+                            <a class="mb-header-nav-list__link" href="/blog.github.io/about/">
+                                About
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+
+    <div id="content">
+<article class="post">
+  
+    <div class="post-content"><h1 id="前提">前提</h1>
+<ul>
+<li>Vagrant: 2.2.14</li>
+<li>VirtualBox: 6.1.22</li>
+<li>ruby: 2.7.1</li>
+<li>Rails: 6.0.3</li>
+<li>MySQL: 5.6</li>
+</ul>
+<p>上記環境での動作を想定
+一応rails3系、ruby1系での環境構築方法も紹介</p>
+<h1 id="目次">目次</h1>
+<ul>
+<li><a href="#%E5%89%8D%E6%8F%90">前提</a></li>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#vagrant%E3%81%AE%E7%92%B0%E5%A2%83%E3%82%92%E4%BD%9C%E6%88%90">Vagrantの環境を作成</a>
+<ul>
+<li><a href="#1-centos7%E3%82%92vagrant%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">1. CentOS7をvagrantにインストールする</a></li>
+<li><a href="#2-vagrantfile%E3%81%AE%E7%B7%A8%E9%9B%86%E3%82%92%E8%A1%8C%E3%81%86">2. Vagrantfileの編集を行う</a></li>
+<li><a href="#3-vagrant%E3%82%92%E8%B5%B7%E5%8B%95%E3%81%99%E3%82%8B">3. vagrantを起動する</a></li>
+</ul>
+</li>
+<li><a href="#centos%E3%81%AE%E7%92%B0%E5%A2%83%E4%BD%9C%E6%88%90">CentOSの環境作成</a>
+<ul>
+<li><a href="#ssh%E3%82%92%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E8%AA%8D%E8%A8%BC%E3%81%A7%E5%85%A5%E3%82%8C%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B">(SSHをパスワード認証で入れるようにする)</a></li>
+<li><a href="#1-%E5%85%B1%E6%9C%89%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%82%92%E8%A1%8C%E3%81%86">1. 共有フォルダの設定を行う</a></li>
+<li><a href="#2-%E6%97%A2%E5%AD%98%E3%81%AEmariadb%E3%82%92%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B">2. 既存のmariaDBを削除する</a></li>
+<li><a href="#3-mysql%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">3. MySQLをインストールする</a></li>
+<li><a href="#4-anyenv%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">4. anyenvをインストールする</a></li>
+<li><a href="#5-rbenv%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">5. rbenvをインストールする</a>
+<ul>
+<li><a href="#51-ruby%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">5.1. rubyをインストールする</a></li>
+</ul>
+</li>
+<li><a href="#6-nodenv%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">6. nodenvをインストールする</a>
+<ul>
+<li><a href="#61-nodejs%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">6.1. node.jsをインストールする</a></li>
+</ul>
+</li>
+<li><a href="#7-bundle-install%E3%82%92%E8%A1%8C%E3%81%86">7. bundle installを行う</a></li>
+<li><a href="#8-%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%82%92%E8%A1%8C%E3%81%86">8. データベースの設定を行う</a></li>
+<li><a href="#ruby-1%E7%B3%BBrails-3%E7%B3%BB%E3%81%A7%E3%81%AE%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">Ruby 1系、Rails 3系での環境構築について</a>
+<ul>
+<li><a href="#ruby-1%E7%B3%BB%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">Ruby 1系のインストール</a></li>
+<li><a href="#rails-3%E7%B3%BB%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">Rails 3系のインストール</a></li>
+</ul>
+</li>
+<li><a href="#db%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%96%E3%82%8A%E8%BE%BC%E3%81%BFdump%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E5%8F%96%E3%82%8A%E8%BE%BC%E3%81%BF">DBのデータ取り込み(dumpファイルの取り込み)</a></li>
+</ul>
+</li>
+<li><a href="#%E7%99%BA%E7%94%9F%E3%81%97%E3%81%9F%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">発生したエラーについて</a>
+<ul>
+<li><a href="#gem-sass%E3%81%AB%E3%82%88%E3%82%8Btext-file-busy%E5%95%8F%E9%A1%8C">gem &lsquo;sass&rsquo;による<code>text file busy</code>問題</a></li>
+<li><a href="#bundler-1%E7%B3%BB%E3%81%AE%E5%AE%9F%E8%A1%8C%E3%83%91%E3%82%B9">bundler 1系の実行パス</a></li>
+<li><a href="#bundle-install%E9%96%A2%E9%80%A3">bundle install関連</a>
+<ul>
+<li><a href="#mysql2%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">mysql2について</a></li>
+<li><a href="#pg%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">pgについて</a></li>
+<li><a href="#nokogiri%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">nokogiriについて</a></li>
+</ul>
+</li>
+<li><a href="#mimemagic%E3%81%AE%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E5%A4%89%E6%9B%B4%E5%95%8F%E9%A1%8C">mimemagicのライセンス変更問題</a>
+<ul>
+<li><a href="#1rails%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%82%92%E8%A1%8C%E3%81%86">(1)Railsのアップグレードを行う</a></li>
+<li><a href="#2mimemagic%E3%82%92%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%97%E3%81%A6%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B">(2)mimemagicをアップグレードして対応する</a></li>
+<li><a href="#3activestorage%E3%82%92%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B">(3)ActiveStorageを削除する</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="vagrantの環境を作成">Vagrantの環境を作成</h1>
+<h2 id="1-centos7をvagrantにインストールする">1. CentOS7をvagrantにインストールする</h2>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#b58900">cd</span> <span style="color:#719e07">{</span>プロジェクトを作成するフォルダに移動<span style="color:#719e07">}</span>
+$ vagrant box add centos/7
+
+<span style="color:#719e07">(</span>略<span style="color:#719e07">)</span>
+
+1<span style="color:#719e07">)</span> hyperv
+2<span style="color:#719e07">)</span> libvirt
+3<span style="color:#719e07">)</span> virtualbox
+4<span style="color:#719e07">)</span> vmware_desktop
+
+<span style="color:#586e75"># 上記選択肢が表示された際にvirtualboxを選択する</span>
+</code></pre></div><p>vagrant上でCentOS7が使用できるようになる<br>
+内部環境は使用する仮想環境毎に異なるため、boxファイル化しても互いに異なるものが出来上がる<br>
+プロジェクトフォルダが異なればもう一度<code>vagrant box add</code>を行う必要がある</p>
+<h2 id="2-vagrantfileの編集を行う">2. Vagrantfileの編集を行う</h2>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ vagrant init centos/7
+
+<span style="color:#586e75"># Vagrantfileが生成されるため，目的に沿って編集を行う</span>
+<span style="color:#586e75"># 下は例</span>
+
+Vagrant.configure<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;2&#34;</span><span style="color:#719e07">)</span> <span style="color:#719e07">do</span> |config|
+  config.vm.box <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;centos/7&#34;</span>
+
+  config.vm.network <span style="color:#2aa198">&#34;forwarded_port&#34;</span>, guest: 3000, host: <span style="color:#2aa198">3000</span>
+  config.vm.network <span style="color:#2aa198">&#34;forwarded_port&#34;</span>, guest: 3300, host: <span style="color:#2aa198">3300</span>
+
+  config.ssh.username <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;vagrant&#34;</span> 
+
+  config.vm.synced_folder <span style="color:#2aa198">&#34;{ホストOS側の共有フォルダ階層(相対パス)}&#34;</span>, <span style="color:#2aa198">&#34;{ゲストOS側の共有フォルダ階層(絶対パス)}&#34;</span>, create: <span style="color:#b58900">true</span>
+
+  <span style="color:#719e07">if</span> Vagrant.has_plugin?<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;vagrant-vbguest&#34;</span><span style="color:#719e07">)</span> <span style="color:#719e07">then</span>
+    config.vbguest.auto_update <span style="color:#719e07">=</span> <span style="color:#b58900">true</span>
+  end
+end
+</code></pre></div><h2 id="3-vagrantを起動する">3. vagrantを起動する</h2>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ vagrant up
+</code></pre></div><p>上記コマンド後に共有フォルダのマウントに失敗した旨のメッセージが表示された場合，<br>
+<code>vagrant vbguest</code>の実行後に<code>vagrant vbguest --status</code>を実行して状態を確かめる</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#719e07">[</span>default<span style="color:#719e07">]</span> No Virtualbox Guest Additions installation found.
+</code></pre></div><p>と表示されていたらvagrant側は正常なため、後述するCentOS側の設定を行う</p>
+<h1 id="centosの環境作成">CentOSの環境作成</h1>
+<p><code>cat /etc/redhat-release</code>を実行してCentOSのバージョンが正しくなっているか確認しておこう</p>
+<h2 id="sshをパスワード認証で入れるようにする">(SSHをパスワード認証で入れるようにする)</h2>
+<p>本来は非推奨な方法だが，あくまで開発環境用の設定として行う</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo vi /etc/ssh/sshd_config
+
+<span style="color:#586e75"># Passwordで検索してPasswordAuthenticationの項目をyesに変更</span>
+
+$ sudo systemctl restart sshd
+</code></pre></div><h2 id="1-共有フォルダの設定を行う">1. 共有フォルダの設定を行う</h2>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo yum install -y kernel kernel-devel kernel-headers dkms gcc gcc-c++
+$ sudo yum update -y kernel kernel-devel
+</code></pre></div><p><code>kernel</code>関連をupdateしてvagrantのGuestAdditionを対応させる</p>
+<h2 id="2-既存のmariadbを削除する">2. 既存のmariaDBを削除する</h2>
+<p><code>MySQL</code>を利用する場合のみ必要<br>
+<code>mariaDB</code>や<code>PostgreSQL</code>の場合には必要ない</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo yum remove mariadb-libs
+$ sudo rm -rf /var/lib/mysql/
+</code></pre></div><h2 id="3-mysqlをインストールする">3. MySQLをインストールする</h2>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#586e75"># 最新版はこちら</span>
+$ sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+<span style="color:#586e75"># MySQL 5.6はこちら</span>
+$ sudo yum localinstall http://dev.mysql.com/get/mysql57-community-release-el6-7.noarch.rpm
+
+<span style="color:#586e75"># MySQL 5.6をインストールする場合に必要な操作</span>
+$ sudo yum -y install yum-utils
+$ sudo yum-config-manager --disable mysql57-community
+$ sudo yum-config-manager --enable mysql56-community
+<span style="color:#586e75"># MySQLのバージョンが正しいことを確認</span>
+$ sudo yum repolist all | grep mysql
+
+$ sudo yum install -y mysql-community-server
+</code></pre></div><p>インストール完了後，<code>MySQL</code>のサービスを立ち上げる</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#586e75"># バージョンの確認</span>
+$ mysqld --version
+
+$ sudo systemctl <span style="color:#b58900">enable</span> mysqld
+$ sudo systemctl start mysqld
+</code></pre></div><h2 id="4-anyenvをインストールする">4. anyenvをインストールする</h2>
+<p><code>anyenv</code>は現在使われている主要な言語をサポート・インストールできる管理ツール<br>
+バージョンを変更するのも容易に行えるので大変便利<br>
+余程のことでもない限りこれを使ってバージョン管理を行うのが適切</p>
+<p>まず，<code>anyenv</code>のソースコードを取得する</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo yum install -y git
+$ git clone https://github.com/anyenv/anyenv ~/.anyenv
+$ <span style="color:#b58900">echo</span> <span style="color:#2aa198">&#39;export PATH=&#34;$HOME/.anyenv/bin:$PATH&#34;&#39;</span> &gt;&gt; ~/.bash_profile
+$ <span style="color:#b58900">source</span> ~/.bash_profile
+</code></pre></div><p>続いて<code>anyenv</code>をインストールする</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ anyenv init
+$ <span style="color:#b58900">echo</span> <span style="color:#2aa198">&#39;eval &#34;$(anyenv init -)&#34;&#39;</span> &gt;&gt; ~/.bash_profile
+$ anyenv install --init
+$ mkdir -p <span style="color:#719e07">$(</span>anyenv root<span style="color:#719e07">)</span>/plugins
+$ git clone https://github.com/znz/anyenv-update.git <span style="color:#719e07">$(</span>anyenv root<span style="color:#719e07">)</span>/plugins/anyenv-update
+$ anyenv update
+
+<span style="color:#586e75"># rbenvとnodenvが存在することを確認</span>
+$ anyenv install --list
+</code></pre></div><h2 id="5-rbenvをインストールする">5. rbenvをインストールする</h2>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#586e75"># anyenv経由でrbenvをインストール</span>
+$ anyenv install rbenv
+$ <span style="color:#b58900">exec</span> <span style="color:#268bd2">$SHELL</span> -l
+</code></pre></div><p>続いて，<code>rbenv</code>の動作確認を行う</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#586e75"># rbenvのバージョンを確認</span>
+$ rbenv --version
+
+<span style="color:#586e75"># rbenvのリストの中に目的のrubyバージョンがあるかどうか確認</span>
+$ rbenv install -L
+</code></pre></div><h3 id="51-rubyをインストールする">5.1. rubyをインストールする</h3>
+<p><code>ruby 2.7.1</code> をインストールするために必要なパッケージをインストール</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo yum install -y openssl-devel readline-devel zlib-devel
+</code></pre></div><p><code>rbenv</code>経由で<code>ruby</code>をインストールする</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ rbenv install 2.7.1
+$ rbenv global 2.7.1
+$ rbenv rehash
+
+<span style="color:#586e75"># インストールされているrubyが正しいか確認する</span>
+$ ruby -v
+</code></pre></div><h2 id="6-nodenvをインストールする">6. nodenvをインストールする</h2>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#586e75"># anyenv経由でnodenvをインストール</span>
+$ anyenv install nodenv
+$ <span style="color:#b58900">exec</span> <span style="color:#268bd2">$SHELL</span> -l
+</code></pre></div><p>続いて，<code>nodenv</code>の動作確認を行う</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#586e75"># nodenvのバージョンを確認</span>
+$ nodenv --version
+
+<span style="color:#586e75"># nodenvのリストの中に目的のnode.jsバージョンがあるかどうか確認</span>
+$ nodenv install -L
+</code></pre></div><h3 id="61-nodejsをインストールする">6.1. node.jsをインストールする</h3>
+<p><code>nodenv</code>経由で<code>node.js</code>をインストールする</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ nodenv install 12.20.0
+$ nodenv global 12.20.0
+$ nodenv rehash
+
+<span style="color:#586e75"># インストールされているnode.jsが正しいか確認する</span>
+$ node -v
+</code></pre></div><h2 id="7-bundle-installを行う">7. bundle installを行う</h2>
+<p>事前に必要なGemの選定等を行い，Gemfileを記載しておく</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ bundle install
+</code></pre></div><p>注意点については<a href="">bundle install関連</a>を参照</p>
+<h2 id="8-データベースの設定を行う">8. データベースの設定を行う</h2>
+<p>config/database.ymlの中身の編集を行うが，下記の要点のみに気を付ければよい</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">Adapter: mysql2
+username: root
+password: <span style="color:#719e07">(</span>設定していない場合は空<span style="color:#719e07">)</span>
+database: ○○_development<span style="color:#719e07">(</span>test, production<span style="color:#719e07">)</span>
+</code></pre></div><p>上記完了後，テーブルの作成とマイグレーションの実行を行う  `
+必要であれば，その後にdumpファイルからデータを取り込ませる</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ bundle <span style="color:#b58900">exec</span> rake db:create
+$ bundle <span style="color:#b58900">exec</span> rake db:migrate
+
+<span style="color:#586e75"># 必要であれば行う</span>
+$ mysql -u root -p ○○_development &lt; dump.sql
+</code></pre></div><h2 id="ruby-1系rails-3系での環境構築について">Ruby 1系、Rails 3系での環境構築について</h2>
+<h3 id="ruby-1系のインストール">Ruby 1系のインストール</h3>
+<p>基本的には上述の <code>ruby 2.7.1</code> のインストールと同じになる<br>
+バージョン的な都合上，<code>bundler 1系</code> をインストールする必要があるが，<a href="">実行パスの設定が行われていないため要注意</a><br>
+なお，<code>ruby 2.7.1</code> のインストールに際して追加で必要なパッケージはない</p>
+<h3 id="rails-3系のインストール">Rails 3系のインストール</h3>
+<p>基本的には上述の <code>bundle install</code> での実行手順と同じ</p>
+<h2 id="dbのデータ取り込みdumpファイルの取り込み">DBのデータ取り込み(dumpファイルの取り込み)</h2>
+<p><code>bundle exec rake db:create</code>，<code>bundle exec rake db:migrate</code>を実行後に行う操作</p>
+<pre><code># MySQLの場合
+$ mysqldump -u root -p {DB名} &gt; dump.sql
+$ mysql -u root -p {DB名} &lt; dump.sql
+
+# PostgreSQLの場合
+$ psql {DB名} &gt; dump.sql
+$ psql {DB名} &lt; dump.sql
+</code></pre><h1 id="発生したエラーについて">発生したエラーについて</h1>
+<h2 id="gem-sassによるtext-file-busy問題">gem &lsquo;sass&rsquo;による<code>text file busy</code>問題</h2>
+<p><em><code>sass 3.2.11 / 3.2.13</code> 等で発生</em><br>
+<code>rails server</code>の起動や<code>bundle exec rake assets:precompile</code>の実行時に<code>text file busy</code>と表示されて実行されない<br>
+解消するには <code>sass 3.2.10</code> に変更する必要がある</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ vi Gemfile
+
+gem <span style="color:#2aa198">&#39;sass&#39;</span>, <span style="color:#2aa198">&#39;=3.2.10&#39;</span>     &lt;<span style="color:#719e07">=</span> 追加
+
+$ bundle update sass
+</code></pre></div><h2 id="bundler-1系の実行パス">bundler 1系の実行パス</h2>
+<p><em><code>bundler 1系</code>を使用する場合に発生</em><br>
+<code>ruby 1系</code>ではインストールするだけで<code>bundler</code>を使用することはできない<br>
+別途で<code>bundler</code>をインストールする必要があるが，その時に実行パスが設定されない<br>
+そのため，手動で<code>bundler</code>の実行パスを環境変数として設定する必要がある</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ gem install bundler -v 1.1.3
+$ <span style="color:#b58900">echo</span> <span style="color:#2aa198">&#39;export PATH=&#34;$HOME/.anyenv/envs/rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/bundler-1.1.3/bin/bundle:$PATH&#34;&#39;</span> &gt;&gt; ~/.bashrc
+$ <span style="color:#b58900">source</span> ~/.bashrc
+</code></pre></div><h2 id="bundle-install関連">bundle install関連</h2>
+<h3 id="mysql2について">mysql2について</h3>
+<p>下記コマンドを実行するだけで解消可能</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo yum install -y mysql-devel
+</code></pre></div><h3 id="pgについて">pgについて</h3>
+<h3 id="nokogiriについて">nokogiriについて</h3>
+<p><code>nokogiri</code>が必要な場合は以下のパッケージを追加でインストールしておく</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo yum install -y libxml2-devel libxslt-devel
+</code></pre></div><p>また，bundlerのconfigを追加する</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ bundle config build.nokogiri --use-system-libraries
+</code></pre></div><p>これでも上手くいかなかった場合にはvagrantの共有フォルダ的な問題である可能性が高いため，
+共有フォルダよりも外側の位置にvendorを配置させる</p>
+<h2 id="mimemagicのライセンス変更問題">mimemagicのライセンス変更問題</h2>
+<p>ライセンスの関係で <code>mimemagic 0.35</code> 以前のRailsアプリケーションは <code>bundle install</code> が失敗するようになっている<br>
+そのため，エラーが発生した場合には以下の2つの対策を取る</p>
+<h3 id="1railsのアップグレードを行う">(1)Railsのアップグレードを行う</h3>
+<p>正確には，<code>Rails 5.2.5 / 6.0.3.6 / 6.1.3.1</code> は<code>mimemagic</code>に依存しなくなった<br>
+上記バージョンにすることで解消は可能だが，他のGemのバージョンに要注意</p>
+<h3 id="2mimemagicをアップグレードして対応する">(2)mimemagicをアップグレードして対応する</h3>
+<p>アプリケーションのライセンスがGPLになるため要相談</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#586e75"># shared-mime-infoをインストールする</span>
+<span style="color:#586e75"># CentOS8以降は標準でインストール済なため必要ない</span>
+$ sudo yum install shared-mime-info
+
+<span style="color:#586e75"># Gemfileに gem &#39;mimemagic&#39;, &#39;~&gt; 0.3.10&#39; を追加する</span>
+$ vi Gemfile
+
+gem <span style="color:#2aa198">&#39;mimemagic&#39;</span>, <span style="color:#2aa198">&#39;~&gt; 0.3.10&#39;</span>
+
+$ bundle update mimemagic
+</code></pre></div><h3 id="3activestorageを削除する">(3)ActiveStorageを削除する</h3>
+<p><code>ActiveStorage</code>は<code>mimemagic</code>に依存しているため，該当Gemを削除すれば理論上使用可能<br>
+<a href="https://gist.github.com/mensfeld/3437de2fae7fc58faccbf28c2e825443">参考</a></p>
+</div>
+  
+</article>
+<button class="floating-button">
+    <a class="floating-button__link" href="https://ishikr.github.io/blog.github.io/">
+        <span>home</span>
+    </a>
+</button>
+
+
+    </div>
+    
+    <footer class="post-footer">
+    <div class="footer">
+        
+        <div class="footer__socials">
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+
+    
+    
+      
+<script src="https://ishikr.github.io/blog.github.io/js/script.js"></script>
+
+    
+  </body>
+</html>

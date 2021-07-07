@@ -5,6 +5,34 @@
     <link>https://ishikr.github.io/blog.github.io/tags/</link>
     <description>Recent content in Tags on 個人的雑感ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-jp</language><atom:link href="https://ishikr.github.io/blog.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ishikr.github.io/blog.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rails</title>
+      <link>https://ishikr.github.io/blog.github.io/tags/rails/</link>
+      <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ishikr.github.io/blog.github.io/tags/rails/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vagrant</title>
+      <link>https://ishikr.github.io/blog.github.io/tags/vagrant/</link>
+      <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ishikr.github.io/blog.github.io/tags/vagrant/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>環境構築</title>
+      <link>https://ishikr.github.io/blog.github.io/tags/%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/</link>
+      <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ishikr.github.io/blog.github.io/tags/%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

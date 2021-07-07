@@ -1,6 +1,48 @@
 baseURL = "https://ishikr.github.io/blog.github.io/"
 languageCode = "ja-jp"
 title = "個人的雑感ブログ"
-theme = "ananke"
+theme = "origin"
 publishDir = "docs"
 hasCJKLanguage = true
+copyright = ""
+
+[params]
+  description = "simple hugo theme"
+  featured = true
+  cssonly = false
+
+  [params.socials]
+    facebook = ""
+    twitter = ""
+    instagram = ""
+    youtube = ""
+    github = ""
+    gitlab = ""
+    linkedin = ""
+    slack = ""
+    stackoverflow = ""
+    medium= ""
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "solarized-dark"
+    tabWidth = 4
+
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 10
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
